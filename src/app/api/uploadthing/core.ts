@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
+import z from "zod";
 import { db } from "~/server/db";
 import { images } from "~/server/db/schema";
 
@@ -21,8 +22,9 @@ export const ourFileRouter = {
       maxFileCount: 1,
     },
   })
+    .input(z.object({ imageName: z.string().min(5) }))
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async ({ req, input }) => {
       // This code runs on your server before upload
       const user = await auth();
 
@@ -30,7 +32,7 @@ export const ourFileRouter = {
       if (!user.userId) throw new UploadThingError("Unauthorized");
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.userId };
+      return { userId: user.userId, imageName: input.imageName };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
@@ -40,6 +42,7 @@ export const ourFileRouter = {
 
       await db.insert(images).values({
         fileName: file.name,
+        imageName: metadata.imageName,
         imageUrl: file.ufsUrl,
         userId: metadata.userId,
       });
