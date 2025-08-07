@@ -1,41 +1,40 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { UploadButton } from "~/utils/uploadthing";
 import { UploadDialog } from "./_components/upload-dialog";
-import { getMyImages } from "~/server/queries";
+import { ImageModal } from "./_components/image-modal";
+const { getMyImages } = await import("~/server/queries");
 
 export const dynamic = "force-dynamic";
 
 async function Images() {
-  // const mockUrls = [
-  //   "https://c4.wallpaperflare.com/wallpaper/386/230/403/jujutsu-kaisen-satoru-gojo-blood-white-hair-blue-eyes-hd-wallpaper-preview.jpg",
-  //   "https://butwhytho.net/wp-content/uploads/2023/09/Gojo-Jujutsu-Kaisen-But-Why-Tho-2.jpg",
-  //   "https://houcz8619o.ufs.sh/f/P4e3m1WqaJbzaMU5Q6qRQ36dkYVsB7XvmKLzean1oj9Fh0M5",
-  //   "https://houcz8619o.ufs.sh/f/P4e3m1WqaJbzCKXDzQufka89HuDnAwzmTegZqELvOdGWyljr",
-  // ];
-
-  // const images = mockUrls.map((url, index) => ({
-  //   id: index,
-  //   url: url,
-  // }));
   const images = await getMyImages();
 
   return (
     <div>
-      <div className="flex justify-end p-4">
+      <div className="p4 flex justify-end">
         <UploadDialog />
       </div>
-      <div className="flex flex-wrap justify-center gap-6 p-4">
+      <div className="flex flex-wrap justify-center gap-6 p-6">
         {images.map((image) => (
-          <div key={image.id} className="flex w-64 flex-col">
-            <div className="relative aspect-video bg-zinc-900">
-              <img
-                src={image.imageUrl}
-                alt={`Image ${image.id}`}
-                className="h-full w-full object-contain object-top"
-              />
+          <div
+            key={image.id}
+            className="w-64 overflow-hidden rounded-2xl shadow-md transition-transform duration-300 hover:scale-105"
+          >
+            <ImageModal image={image}>
+              <div className="relative aspect-video bg-white">
+                <img
+                  src={image.imageUrl}
+                  alt={`Image ${image.id}`}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </ImageModal>
+            <div className="bg-black p-3 text-center">
+              <p className="text-sm font-medium text-white">
+                {image.imageName || image.fileName}
+              </p>
             </div>
-            <div className="text-center">{image.id}</div>
           </div>
         ))}
       </div>
@@ -43,7 +42,7 @@ async function Images() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <main className="">
       <SignedOut>

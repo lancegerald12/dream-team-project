@@ -112,21 +112,6 @@ export function UploadDialog() {
   }
 
   return (
-    // <UploadButton
-    //   endpoint="imageUploader"
-    //   onClientUploadComplete={(res) => {
-    //     // Do something with the response
-    //     console.log("Files: ", res);
-    //     // alert("Upload Completed");
-    //     toast.success("Upload Completed");
-    //     router.refresh();
-    //   }}
-    //   onUploadError={(error: Error) => {
-    //     // Do something with the error.
-    //     // alert(`ERROR! ${error.message}`);
-    //     toast.error(`ERROR! ${error.message}`);
-    //   }}
-    // />
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Upload Image</Button>
