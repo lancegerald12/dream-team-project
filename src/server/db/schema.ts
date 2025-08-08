@@ -21,8 +21,8 @@ export const images = createTable(
     fileName: d.varchar({ length: 256 }),
     imageName: d.varchar({ length: 256 }),
     imageUrl: d.varchar({ length: 1024 }).notNull(),
-    // imageKey: d.varchar({ length: 256 }).notNull(),
     userId: d.varchar({ length: 64 }).notNull(),
+    imageDescription: d.text(), // Added this line for the description
     createdAt: d
       .timestamp({ withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)

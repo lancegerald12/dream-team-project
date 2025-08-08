@@ -30,12 +30,17 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
+import { Textarea } from "~/components/ui/textarea";
 
 const formSchema = z.object({
   imageName: z
     .string()
-    .min(5, { message: "Image Name must at least 5 characters long" })
+    .min(5, { message: "Image Name must be at least 5 characters long" })
     .max(50),
+  imageDescription: z
+    .string()
+    .max(500, { message: "Description must be less than 500 characters" })
+    .optional(),
 });
 
 export function UploadDialog() {
@@ -45,6 +50,7 @@ export function UploadDialog() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       imageName: "",
+      imageDescription: "",
     },
   });
 
@@ -100,6 +106,7 @@ export function UploadDialog() {
     const selectedImage = Array.from(inputRef.current.files);
     await startUpload(selectedImage, {
       imageName: form.getValues("imageName"),
+      imageDescription: form.getValues("imageDescription"),
     });
     setSelectedImageName(null);
     setSelectedImageUrl(null);
@@ -153,16 +160,6 @@ export function UploadDialog() {
             )}
           </div>
         </div>
-        {/* <div className="grid gap-4">
-          <div className="grid gap-3">
-            <Label htmlFor="name-1">Name</Label>
-            <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="username-1">Username</Label>
-            <Input id="username-1" name="username" defaultValue="@peduarte" />
-          </div>
-        </div> */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -174,9 +171,29 @@ export function UploadDialog() {
                   <FormControl>
                     <Input placeholder="Image Name" {...field} />
                   </FormControl>
-                  {/* <FormDescription>
+                  <FormDescription>
                     This is your public display name.
-                  </FormDescription> */}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="imageDescription"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Describe your image (optional)"
+                      {...field}
+                      className="resize-none"
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    Add a description to your image (max 500 characters).
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

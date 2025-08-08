@@ -30,7 +30,7 @@ async function Images() {
                 />
               </div>
             </ImageModal>
-            <div className="bg-black p-3 text-center">
+            <div className="bg-gray-400 p-3 text-center">
               <p className="text-sm font-medium text-white">
                 {image.imageName || image.fileName}
               </p>
@@ -47,12 +47,12 @@ export default async function HomePage() {
     <main className="">
       <SignedOut>
         <div className="h-full w-full text-center text-2xl">
-          Please sign in above to continue!
+          Please log in to access our movie collection.
         </div>
       </SignedOut>
       <SignedIn>
         <div className="h-full w-full text-center text-2xl">
-          Welcome back!
+          Top picks Movies
           <Images />
         </div>
       </SignedIn>
