@@ -10,7 +10,7 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { Toaster } from "~/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "Dream Team Project",
+  title: "IMDb",
   description: "Project IPT",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

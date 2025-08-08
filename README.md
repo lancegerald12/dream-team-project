@@ -1,29 +1,37 @@
-# Create T3 App
+# 🎬 IMDb - Movie Database
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+An IMDb-inspired movie database where users can upload movie images, set image names, and add descriptions.  
+Built with **TypeScript**, **Clerk** for authentication, **UploadThing** for image uploads, **shadcn/ui** for UI components, and **Tailwind CSS** for styling.
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 🚀 Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **User Authentication** – Secure sign-in and sign-up with [Clerk](https://clerk.com/).
+- **Image Uploads** – Upload movie posters or stills using [UploadThing](https://uploadthing.com/).
+- **Image Details** – Add a name and description for each uploaded image.
+- **Modern UI** – Buttons, forms, and components powered by [shadcn/ui](https://ui.shadcn.com/).
+- **Responsive Design** – Styled with [Tailwind CSS](https://tailwindcss.com/) for a sleek and mobile-friendly interface.
 
 ## Learn More
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+---
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## 🛠 Technologies Used
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- **TypeScript**
+- **Clerk** (Authentication)
+- **UploadThing** (File uploads)
+- **shadcn/ui** (UI components)
+- **Tailwind CSS** (Styling)
+- **T3 Stack** (Next.js, tRPC, Prisma/Drizzle)
 
-## How do I deploy this?
+---
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## ⚙️ Setup & Installation
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/lancegerald12/dream-team-project.git
+```
