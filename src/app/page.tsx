@@ -1,8 +1,9 @@
-import { SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
+// import { SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { UploadButton } from "~/utils/uploadthing";
 import { UploadDialog } from "./_components/upload-dialog";
 import { ImageModal } from "./_components/image-modal";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 const { getMyImages } = await import("~/server/queries");
 
 export const dynamic = "force-dynamic";
